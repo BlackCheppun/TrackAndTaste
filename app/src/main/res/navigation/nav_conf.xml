@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_conf"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.mobilecomputing.trackandtaste.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home"
+        />
+
+    <fragment
+        android:label="Map"
+        android:name="com.mobilecomputing.trackandtaste.MapFragment"
+        android:id="@+id/map"
+        tools:layout="@layout/fragment_map"
+        />
+
+    <fragment
+        android:label="Settings"
+        android:name="com.mobilecomputing.trackandtaste.SettingsFragment"
+        android:id="@+id/settings"
+        tools:layout="@layout/fragment_settings"
+        />
+
+</navigation>
