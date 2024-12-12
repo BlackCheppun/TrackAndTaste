@@ -83,18 +83,12 @@ public class MapFragment extends Fragment {
         mapController.setCenter(locationoverlay.getMyLocation());
         mapView.getOverlays().add(locationoverlay);
 
-        // add compassoverlay
-        CompassOverlay compassOverlay = new CompassOverlay(getContext(), new InternalCompassOrientationProvider(getContext()), mapView);
-        compassOverlay.enableCompass();
 
         // add the sclare bar overlay
         ScaleBarOverlay scaleBarOverlay = new ScaleBarOverlay(mapView);
         scaleBarOverlay.setAlignBottom(true);
 
-
-        mapView.getOverlays().add(compassOverlay);
         mapView.getOverlays().add(scaleBarOverlay);
-        centerOnUserLocation();
 
         centerLocationB = view.findViewById(R.id.center_locationB);
         centerLocationB.setOnClickListener(v ->{
