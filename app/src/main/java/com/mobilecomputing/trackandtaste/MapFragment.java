@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -40,8 +42,17 @@ import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 public class MapFragment extends Fragment {
 
@@ -95,7 +106,21 @@ public class MapFragment extends Fragment {
             centerOnUserLocation();
         });
 
+        searchResults = view.findViewById(R.id.searchResults);
+        searchBar = view.findViewById(R.id.searchBar);
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                clearMap();
+                performGeocoding(query);
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         return view;
 
@@ -272,6 +297,67 @@ public class MapFragment extends Fragment {
             }
         });
     }
+
+    private void displayDirectionsOnMap(MapView mapView, List<HashMap<String, Double>> pathPoints) {
+        // Create a new Polyline
+        Polyline polyline = new Polyline();
+        for (HashMap<String, Double> point : pathPoints) {
+            // Convert each LatLng to GeoPoint (OSM format)
+            double lat = point.get("lat");
+            double lon = point.get("lon");
+            polyline.addPoint(new GeoPoint(lat, lon));
+        }
+
+        // Add the Polyline to the map
+        mapView.getOverlays().add(polyline);
+        polylines.add(polyline);
+
+        // Optional: Zoom to the polyline's bounds
+        BoundingBox boundingBox = polyline.getBounds();
+        mapView.zoomToBoundingBox(boundingBox, true);
+    }
+
+    public List<HashMap<String, Double>> parseDirections(String jsonResponse) throws Exception {
+        List<HashMap<String, Double>> pathPoints = new ArrayList<>();
+
+        // Parse the JSON response
+        JSONObject root = new JSONObject(jsonResponse);
+        JSONArray features = root.getJSONArray("features");
+        JSONObject geometry = features.getJSONObject(0).getJSONObject("geometry");
+        JSONArray coordinates = geometry.getJSONArray("coordinates");
+
+        // Loop through the coordinates and store them in HashMap
+        for (int i = 0; i < coordinates.length(); i++) {
+            JSONArray coord = coordinates.getJSONArray(i);
+            double lon = coord.getDouble(0);
+            double lat = coord.getDouble(1);
+
+            // Store each coordinate as a HashMap
+            HashMap<String, Double> point = new HashMap<>();
+            point.put("lat", lat);
+            point.put("lon", lon);
+
+            pathPoints.add(point);  // Add the point to the list
+        }
+
+        return pathPoints;
+    }
+
+    private void clearMap() {
+        for (Marker marker : markers) {
+            mapView.getOverlays().remove(marker);
+        }
+        for (Polyline polyline : polylines) {
+            mapView.getOverlays().remove(polyline);
+        }
+        markers.clear();
+        polylines.clear();
+        mapView.invalidate();
+    }
+
+
+
+
 
     @Override
     public void onResume() {
