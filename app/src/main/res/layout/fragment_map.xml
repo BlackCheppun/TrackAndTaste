@@ -11,6 +11,37 @@
         android:id="@+id/mapView"
         />
 
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search a restaurant !"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchResults"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/searchBar"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="72dp"
+        >
+    <Button
+        android:id="@+id/btn_go_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="itinerate"
+        android:visibility="gone"/>
+
+    </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
