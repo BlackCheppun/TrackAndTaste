@@ -78,6 +78,9 @@ public class MapFragment extends Fragment {
         // Add location overlay
         locationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(getContext()),mapView);
         locationoverlay.enableMyLocation();
+        IMapController mapController = mapView.getController();
+        mapController.setZoom(15.0);
+        mapController.setCenter(locationoverlay.getMyLocation());
         mapView.getOverlays().add(locationoverlay);
 
         // add compassoverlay
