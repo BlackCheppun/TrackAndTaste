@@ -122,6 +122,8 @@ public class MapFragment extends Fragment {
             }
         });
 
+        btnGoTo = view.findViewById(R.id.btn_go_to);
+
         return view;
 
     }
@@ -235,7 +237,6 @@ public class MapFragment extends Fragment {
                     searchResults.setVisibility(View.GONE);
 
                     // Show the "Go To" button for navigation
-                    Button btnGoTo = requireView().findViewById(R.id.btn_go_to);
                     btnGoTo.setVisibility(View.VISIBLE);
                     btnGoTo.setOnClickListener(view->performDirections(lat, lon));
                 });
