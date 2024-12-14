@@ -20,5 +20,22 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this,R.id.nav_fragment);
 
         NavigationUI.setupWithNavController(binding.navigationBar, navController);
+        binding.navigationBar.setOnItemSelectedListener(item ->{
+            if(item.getItemId() == R.id.home){
+                navController.popBackStack(R.id.home, true);
+                navController.navigate(R.id.home);
+            }
+            else{
+                if(item.getItemId() == R.id.map){
+                    navController.popBackStack(R.id.map, false);
+                    navController.navigate(R.id.map);
+                }
+                else{
+                    navController.popBackStack(R.id.settings, false);
+                    navController.navigate(R.id.settings);
+                }
+            }
+            return true;
+        });
     }
 }

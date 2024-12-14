@@ -10,7 +10,11 @@
         android:name="com.mobilecomputing.trackandtaste.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home"
-        />
+        >
+        <action
+            android:id="@+id/action_home_to_map"
+            app:destination="@+id/map" />
+    </fragment>
 
     <fragment
         android:label="Map"
