@@ -5,9 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home" />
+        android:id="@+id/addLocationB"
+        android:src="@drawable/sharp_add_black_36"
+        android:layout_gravity="end"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Add location modal pop up"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/locationCardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"/>
+    </ScrollView>
 
 </FrameLayout>
