@@ -60,7 +60,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getAllLocations() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cur =  db.query(TABLE_NAME, null, null, null, null, null, null);
-        db.close();
         return cur;
     }
 
