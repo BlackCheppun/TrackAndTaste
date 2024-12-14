@@ -15,9 +15,9 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "saved_locations";
     // columns
     private static final String Column_id = "id";
-    private static final String Column_label = "label";
-    private static final String Column_lat = "lat";
-    private static final String Column_lon = "lon";
+    public static final String Column_label = "label";
+    public static final String Column_lat = "lat";
+    public static final String Column_lon = "lon";
 
     // SQL to create db
     private static final String CREATE_TABLE = "CREATE TABLE "+ TABLE_NAME + " ("
@@ -26,8 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
             + Column_lat + " REAL, "
             + Column_lon + " REAL);";
 
-    public DBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, null, version);
+    public DBHelper(@Nullable Context context) {
+        super(context, DBNAME, null, VERSION);
     }
 
     @Override
@@ -59,7 +59,9 @@ public class DBHelper extends SQLiteOpenHelper {
     // returns a cursos, so we can manage directly from file and keep this file clean
     public Cursor getAllLocations() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.query(TABLE_NAME, null, null, null, null, null, null);
+        Cursor cur =  db.query(TABLE_NAME, null, null, null, null, null, null);
+        db.close();
+        return cur;
     }
 
 
