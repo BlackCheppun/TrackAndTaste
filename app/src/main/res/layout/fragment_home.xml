@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:orientation="vertical"
+    android:backgroundTint="@color/white">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/background"
+        />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addLocationB"
@@ -13,12 +24,25 @@
         android:layout_gravity="end"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/ic_trackandtaste_background"
         android:contentDescription="Add location modal pop up"
+            />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your favorites places :"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
         />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="Scroll view for locations">
 
         <LinearLayout
             android:id="@+id/locationCardContainer"
@@ -28,4 +52,4 @@
             android:padding="16dp"/>
     </ScrollView>
 
-</FrameLayout>
+</LinearLayout>
