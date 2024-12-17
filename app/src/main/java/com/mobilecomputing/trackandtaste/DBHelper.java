@@ -11,18 +11,20 @@ import androidx.annotation.Nullable;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DBNAME = "track_and_taste.db";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String TABLE_NAME = "saved_locations";
     // columns
     private static final String Column_id = "id";
     public static final String Column_label = "label";
     public static final String Column_lat = "lat";
     public static final String Column_lon = "lon";
+    public static final String Column_address="address";
 
     // SQL to create db
     private static final String CREATE_TABLE = "CREATE TABLE "+ TABLE_NAME + " ("
             + Column_id + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Column_label + " TEXT, "
+            + Column_address + " TEXT, "
             + Column_lat + " REAL, "
             + Column_lon + " REAL);";
 
@@ -43,10 +45,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     //insert a new location into the db
-    public boolean insertLocation(String label, double lat, double lon) {
+    public boolean insertLocation(String label, String address, double lat, double lon) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Column_label, label);
+        contentValues.put(Column_address, address);
         contentValues.put(Column_lat, lat);
         contentValues.put(Column_lon, lon);
         long result = db.insert(TABLE_NAME, null, contentValues);
