@@ -6,6 +6,23 @@
     android:padding="8dp"
     >
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Look for your"
+        android:id="@+id/modalsearchbar"
+        android:layout_margin="16dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/modalsearchResults"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/modalsearchbar"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:background="@color/white" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,20 +31,13 @@
         android:layout_margin="16dp"
         />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="latitde"
         android:layout_margin="16dp"
-        android:id="@+id/input_lat"/>
+        android:text="address"
+        android:id="@+id/labelAddress"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="longtitude"
-        android:id="@+id/input_lon"
-        android:layout_margin="16dp"
-        />
 
     <Button
         android:layout_width="wrap_content"

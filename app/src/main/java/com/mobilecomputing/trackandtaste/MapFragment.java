@@ -62,6 +62,7 @@ public class MapFragment extends Fragment {
     private SearchView searchBar;
     private RecyclerView searchResults;
     private Button btnGoTo;
+    private IMapController mapController;
 
     private GeoPoint userlocation;
     private GeoPoint destination;
@@ -87,24 +88,51 @@ public class MapFragment extends Fragment {
         mapView.setMultiTouchControls(true);
 
         // Add location overlay
-        locationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(getContext()),mapView);
+        locationoverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(requireContext()),mapView);
         locationoverlay.enableMyLocation();
-        IMapController mapController = mapView.getController();
-        mapController.setZoom(15.0);
-        mapController.setCenter(locationoverlay.getMyLocation());
         mapView.getOverlays().add(locationoverlay);
+
+
+        mapController = mapView.getController();
+
 
 
         // add the sclare bar overlay
         ScaleBarOverlay scaleBarOverlay = new ScaleBarOverlay(mapView);
         scaleBarOverlay.setAlignBottom(true);
-
         mapView.getOverlays().add(scaleBarOverlay);
+
+        btnGoTo = view.findViewById(R.id.btn_go_to);
 
         centerLocationB = view.findViewById(R.id.center_locationB);
         centerLocationB.setOnClickListener(v ->{
             centerOnUserLocation();
         });
+
+
+        if(getArguments() != null){
+            GeoPoint location = new GeoPoint(getArguments().getDouble("lat"), getArguments().getDouble("lon"));
+            Marker locationMark = new Marker(mapView);
+            locationMark.setTitle(getArguments().getString("label"));
+            locationMark.setPosition(location);
+            markers.add(locationMark);
+            mapController.setCenter(location);
+            mapController.setZoom(15.0);
+            mapView.getOverlays().add(locationMark);
+            btnGoTo.setVisibility(View.VISIBLE);
+            btnGoTo.setOnClickListener(view1 -> performDirections(location.getLatitude(), location.getLongitude()));
+        }else{
+            if(locationoverlay.getMyLocation() != null){
+                locationoverlay.enableFollowLocation();
+                mapController.setCenter(locationoverlay.getMyLocation());
+                mapController.setZoom(18.0);
+            }
+            else{
+                mapView.postDelayed(this::centerOnUserLocation, 1000);
+            }
+        }
+
+
 
         searchResults = view.findViewById(R.id.searchResults);
         searchBar = view.findViewById(R.id.searchBar);
@@ -130,8 +158,7 @@ public class MapFragment extends Fragment {
     private void centerOnUserLocation() {
 
         if (locationoverlay.getMyLocation() != null) {
-            IMapController mapController = mapView.getController();
-            mapController.setZoom(21.0);
+            mapController.setZoom(18.0);
             mapController.setCenter(locationoverlay.getMyLocation());
         } else {
             Tools.showLongToast(getContext(), "Unable to determine location");
@@ -225,7 +252,7 @@ public class MapFragment extends Fragment {
                     GeoPoint selectedLocation = new GeoPoint(lat, lon);
 
                     // Move the map camera to the selected location
-                    mapView.getController().setCenter(selectedLocation);
+                    mapController.setCenter(selectedLocation);
                     mapView.getController().setZoom(15.0);
                     Marker resultMark = new Marker(mapView);
                     resultMark.setPosition(selectedLocation);
@@ -354,9 +381,6 @@ public class MapFragment extends Fragment {
         polylines.clear();
         mapView.invalidate();
     }
-
-
-
 
 
     @Override
