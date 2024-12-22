@@ -105,6 +105,7 @@ public class MapFragment extends Fragment {
         centerLocationB.setOnClickListener(v ->{
             centerOnUserLocation();
         });
+        btnGoTo = view.findViewById(R.id.btn_go_to);
 
         searchResults = view.findViewById(R.id.searchResults);
         searchBar = view.findViewById(R.id.searchBar);
