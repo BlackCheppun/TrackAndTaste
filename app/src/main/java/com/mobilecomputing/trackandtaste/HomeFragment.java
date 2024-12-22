@@ -173,6 +173,7 @@ public class HomeFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putDouble("lat", lat);
                     bundle.putDouble("lon", lon);
+                    bundle.putString("label", label);
 
                     NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment);
                     navController.navigate(R.id.action_home_to_map, bundle);
