@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
     android:orientation="vertical"
-    android:backgroundTint="@color/white">
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="wrap_content"
