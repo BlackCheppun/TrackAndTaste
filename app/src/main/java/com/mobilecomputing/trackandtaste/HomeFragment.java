@@ -3,11 +3,13 @@ package com.mobilecomputing.trackandtaste;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.database.Cursor;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -138,18 +140,29 @@ public class HomeFragment extends Fragment {
                 double lon = cur.getDouble(cur.getColumnIndexOrThrow(DBHelper.Column_lon));
                 // Make a card for each location and add it to the fragment
                 CardView cardView = new CardView(requireContext());
-                cardView.setLayoutParams(new LinearLayout.LayoutParams(
+
+                LinearLayout.LayoutParams cardviewparams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                ));
-                cardView.setRadius(8);
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                cardviewparams.setMargins(0, 16, 0, 0);
+                cardView.setLayoutParams(cardviewparams);
+                cardView.setRadius(12 * getResources().getDisplayMetrics().density);
                 cardView.setElevation(4);
                 cardView.setPadding(16, 16, 16, 16);
                 cardView.setClickable(true);
 
-                LinearLayout linearLayout = new LinearLayout(getContext());
+                cardView.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.border));
+
+
+                LinearLayout linearLayout = new LinearLayout(requireContext());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
-                linearLayout.setPadding(16, 16, 16, 16);
+                linearLayout.setPadding(
+                        (int) (16 * getResources().getDisplayMetrics().density), // Convert dp to px
+                        (int) (16 * getResources().getDisplayMetrics().density),
+                        (int) (16 * getResources().getDisplayMetrics().density),
+                        (int) (16 * getResources().getDisplayMetrics().density)
+                );
                 linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
