@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="This option opens the app and put an automatic itinerary to a restaurant or a dining place of your chosing whenever a shaking gesture is detected."
+            android:text="This option detects gestures when enabled, allowing direct navigation to the map for quick access without any clicks!"
             />
 
         <Switch
