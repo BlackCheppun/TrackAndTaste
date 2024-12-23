@@ -14,6 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/navigationBar"
         app:menu="@menu/bottom_nav_menu"
+        style="@style/BottomNavigation"
+        app:itemActiveIndicatorStyle="@style/BottomNavigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

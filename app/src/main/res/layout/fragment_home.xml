@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,9 +25,8 @@
         android:layout_gravity="end"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/ic_trackandtaste_background"
-        android:contentDescription="Add location modal pop up"
-            />
+            style="@style/ftactionBtn"
+        android:contentDescription="Add location modal pop up" />
     </FrameLayout>
 
     <TextView
