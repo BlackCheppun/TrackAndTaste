@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Example of an icon in the drawable folder (ic_reminder.xml) -->
+    <vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:height="24dp"
+        android:width="24dp"
+        android:viewportHeight="24"
+        android:viewportWidth="24">
+        <path android:fillColor="#000000" android:pathData="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM12,18C9.79,18 8,16.21 8,14H16C16,16.21 14.21,18 12,18ZM12,14C12.55,14 13,13.55 13,13V10C13,9.45 12.55,9 12,9C11.45,9 11,9.45 11,10V13C11,13.55 11.45,14 12,14Z"/>
+    </vector>
+
+</selector>
