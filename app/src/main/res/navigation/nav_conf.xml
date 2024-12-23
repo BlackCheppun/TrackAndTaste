@@ -28,6 +28,12 @@
         android:name="com.mobilecomputing.trackandtaste.SettingsFragment"
         android:id="@+id/settings"
         tools:layout="@layout/fragment_settings"
-        />
+        >
+
+        <action
+            android:id="@+id/action_settings_to_map"
+            app:destination="@+id/map" />
+
+    </fragment>
 
 </navigation>

@@ -10,20 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Dark Mode Section -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dark Mode"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:text="Settings and Preferences"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            />
 
         <Switch
             android:id="@+id/dark_mode_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:text="Dark Mode"
+            android:thumbTint="@color/green_primary"
+            />
 
         <!-- Reminder Section -->
         <TextView
@@ -33,6 +38,13 @@
             android:textSize="18sp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="This options allows you to setup up an alarm directly from Track And Taste, it'll set off at at a time of your choosing to remind you that it's time you take of to your favorite restaurant !"
+            />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -70,11 +82,17 @@
             android:textSize="16sp"
             android:layout_marginBottom="8dp" />
 
+
         <Button
             android:id="@+id/set_reminder_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Reminder" />
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:paddingHorizontal="48dp"
+            android:backgroundTint="@color/green_primary"
+            android:text="Set Reminder"
+            android:layout_marginBottom="48dp" />
 
         <!-- Gesture Service Section -->
         <TextView
@@ -84,12 +102,19 @@
             android:textSize="18sp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="This option detects gestures when enabled, allowing direct navigation to the map for quick access without any clicks!"
+            />
 
         <Switch
             android:id="@+id/gesture_service_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
+            android:thumbTint="@color/green_primary"
             android:text="Enable Shake Detection" />
     </LinearLayout>
 
