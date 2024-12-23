@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import java.util.Calendar;
 
@@ -170,6 +172,8 @@ public class SettingsFragment extends Fragment implements SensorEventListener {
             if (shakeMagnitude > SHAKE_THRESHOLD && System.currentTimeMillis() - lastShakeTime > SHAKE_INTERVAL) {
                 lastShakeTime = System.currentTimeMillis();
                 Toast.makeText(getContext(), "Shake detected!", Toast.LENGTH_SHORT).show();
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment);
+                navController.navigate(R.id.action_settings_to_map);
             }
         }
     }
